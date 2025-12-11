@@ -43,7 +43,6 @@ def main() -> None:
 
         if command in ["close", "exit"]:
             address_book.save_data()
-            print('AdressBook saved.')
             break
 
 if __name__ == '__main__':

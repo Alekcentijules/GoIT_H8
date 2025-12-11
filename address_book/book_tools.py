@@ -243,12 +243,22 @@ class AddressBook(UserDict):
                     })
         return upcoming
     
-    def save_data(self, filename='addressbook.pkl') -> None:
+    def save_data(self, filename: str ='addressbook.pkl') -> None:
+        """
+        Saves the current address book to a file using pickle.
+        
+        Used when exiting the programme correctly (close/exit).
+        """
         with open(filename, 'wb') as file:
             pickle.dump(self, file)
 
     @classmethod
-    def load_data(csl, filename='addressbook.pkl') -> "AddressBook":
+    def load_data(csl, filename: str ='addressbook.pkl') -> "AddressBook":
+        """
+        Loads the address book from a file.
+    
+        If the file does not exist, returns an empty book.
+        """
         try:
             with open(filename, 'rb') as file:
                 return pickle.load(file)
@@ -262,6 +272,7 @@ class AddressBook(UserDict):
     def __repr__(self) -> str:
         """
         Returns an unambiguous string representation of the AddressBook.
+        
         Useful for debugging and logging.
         """
         return f"AddressBook({self.data})"

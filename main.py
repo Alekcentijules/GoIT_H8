@@ -18,10 +18,12 @@ from address_book import (
 def main() -> None:
     """
     The main function of the bot.
-    Controls the command input cycle and interaction with the user.
+    
+    Loads the address book at startup,
+    saves it when exiting,
+    manages the entire user interaction cycle.
     """
-    book = AddressBook.load_data()
-    address_book = AddressBook()
+    address_book = AddressBook.load_data()
     print("Welcome to the assistant bot!")
     while True:
         
@@ -40,7 +42,7 @@ def main() -> None:
         print(result)
 
         if command in ["close", "exit"]:
-            book.save_data()
+            address_book.save_data()
             print('AdressBook saved.')
             break
 

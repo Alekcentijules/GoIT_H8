@@ -7,6 +7,7 @@ Contains:
 - AddressBook — contact book (inherits UserDict)
 """
 
+import pickle
 from datetime import datetime, timedelta
 from collections import UserDict
 from typing import Optional, List
@@ -241,6 +242,18 @@ class AddressBook(UserDict):
                     "birthday": cong_day.strftime("%d.%m.%Y")
                     })
         return upcoming
+    
+    def save_data(self, filename='addressbook.pkl') -> None:
+        with open(filename, 'wb') as file:
+            pickle.dump(self, file)
+
+    @classmethod
+    def load_data(csl, filename='addressbook.pkl') -> "AddressBook":
+        try:
+            with open(filename, 'rb') as file:
+                return pickle.load(file)
+        except FileNotFoundError:
+            return csl()
 
     def __str__(self) -> str:
         """Returns a string representation of the entire book."""

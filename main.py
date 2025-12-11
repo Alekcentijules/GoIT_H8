@@ -20,6 +20,7 @@ def main() -> None:
     The main function of the bot.
     Controls the command input cycle and interaction with the user.
     """
+    book = AddressBook.load_data()
     address_book = AddressBook()
     print("Welcome to the assistant bot!")
     while True:
@@ -39,7 +40,8 @@ def main() -> None:
         print(result)
 
         if command in ["close", "exit"]:
-            print("Good bye!")
+            book.save_data()
+            print('AdressBook saved.')
             break
 
 if __name__ == '__main__':
